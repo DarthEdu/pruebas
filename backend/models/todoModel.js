@@ -17,4 +17,18 @@ const getAll = () => {
   return todos;
 };
 
-module.exports = { add, getById, getAll };
+const update = (id, data) => {
+  const index = todos.findIndex((todo) => todo.id === id);
+  if (index === -1) return null;
+  todos[index] = { ...todos[index], ...data };
+  return todos[index];
+};
+
+const remove = (id) => {
+  const index = todos.findIndex((todo) => todo.id === id);
+  if (index === -1) return false;
+  todos.splice(index, 1);
+  return true;
+};
+
+module.exports = { add, getById, getAll, update, remove };
